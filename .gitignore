@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# Packages
+*.egg-info/
+.eggs/
+*.egg
+
+# Distribution / packaging
+.build/
+dist/
+build/
+.eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Pytest
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+.env.*
+
+# Streamlit
+.streamlit/
+
+# Cache files
+.cache/
+*.sqlite3
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Environment secrets
+.env
+.env.*
+!.env.example
