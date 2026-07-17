@@ -64,7 +64,7 @@ touch .env
 code .env
 ```
 
-add below arguments 
+add below arguments into the `.env` file 
 
 ```bash
 GEMINI_API_KEY=your_api_key_here
@@ -92,9 +92,20 @@ If you want, create a `.env` in the project root with the variable names (the ac
 streamlit run app.py
 ```
 
+
+
+
 Then open the local Streamlit URL shown in your browser.
 
-If you prefer to run the Docker image, use:
+
+Github Action: 
+If you prefer to run the Docker image, first pull the image:
+
+```bash
+docker pull ghcr.io/vincenttsai0601/streamer-recommender:latest
+```
+
+Then run the container:
 
 ```bash
 docker run --rm \
