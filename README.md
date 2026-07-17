@@ -2,6 +2,9 @@
 
 A hybrid recommendation system for live streaming anchors. It combines structured tag matching with Chinese semantic retrieval using sentence embeddings, and optionally generates natural-language explanations via Google Gemini.
 
+## Dataset 
+The dataset itself exhibits a clear gender imbalance. Therefore, the gender distribution of the recommendation results does not necessarily reflect model bias alone, but is also influenced by the composition of the original candidate pool.
+
 ## Features
 
 - Hybrid recommendation using:
@@ -61,6 +64,28 @@ streamlit run app.py
 ```
 
 Then open the local Streamlit URL shown in your browser.
+
+If you prefer to run the Docker image, use:
+
+```bash
+docker run --rm \
+  --name streamer-recommender \
+  --env-file .env \
+  -p 8514:8501 \
+  ghcr.io/vincenttsai0601/streamer-recommender:latest
+```
+
+Then open:
+
+```text
+http://localhost:8514
+```
+
+If you run the Docker container with port mapping `-p 8514:8501`, open:
+
+```text
+http://localhost:8514
+```
 
 ## Run the CLI Fallback
 
