@@ -29,11 +29,11 @@ The dataset itself exhibits a clear gender imbalance. Therefore, the gender dist
 
 ## Installation
 
-1. Create and activate a virtual environment:
+1. Create and activate a Conda environment:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
+conda create -n streamer-recommender python=3.11 -y
+conda activate streamer-recommender
 ```
 
 2. Install dependencies:
@@ -42,6 +42,17 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Installing PyTorch 
+
+PyTorch wheels are platform- and CUDA-version-specific and therefore are not included directly in `requirements.txt`. Install `torch` / `torchvision` / `torchaudio` separately using one of the options below that matches your system.
+
+- pip (CUDA 11.8):
+
+```bash
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+```
+
+
 ## Configuration
 
 The app can optionally use Google Gemini for explanation generation.
@@ -49,13 +60,31 @@ The app can optionally use Google Gemini for explanation generation.
 Create a `.env` file in the project root or export environment variables directly:
 
 ```bash
+touch .env
+code .env
+```
+
+add below arguments 
+
+```bash
 GEMINI_API_KEY=your_api_key_here
 GEMINI_MODEL=gemini-3.1-flash-lite
 DATA_PATH=anchors_100.csv
 CACHE_DIR=.cache
+EMBEDDING_MODEL_NAME=shibing624/text2vec-base-chinese
 ```
 
 If `GEMINI_API_KEY` is not set or `google-genai` is unavailable, the system will use a local text-based fallback explanation.
+
+### Obtaining a Gemini API key (Generative AI Studio)
+If you obtained your API key from AI Studio, use the API keys page:
+
+`https://aistudio.google.com/api-keys`
+
+Copy the key shown there into `GEMINI_API_KEY` in your `.env` file (or export it as an environment variable).
+
+
+If you want, create a `.env` in the project root with the variable names (the actual secret should never be committed).
 
 ## Run the Streamlit App
 
