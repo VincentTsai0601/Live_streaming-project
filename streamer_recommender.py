@@ -5,8 +5,6 @@ import re
 from pathlib import Path
 from typing import Any
 
-from dotenv import load_dotenv
-
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer

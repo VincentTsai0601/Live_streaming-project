@@ -150,3 +150,47 @@ This will prompt for a query and display ranked anchor recommendations in the te
 ## License
 
 This repository does not include a license file. Add one if you plan to share or publish the project.
+
+## Development checks
+
+Use Python 3.11 and a virtual environment. The offline harness does not need
+PyTorch, downloaded embedding models, or Gemini credentials:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements-dev.txt
+python -m pytest -q
+python -m ruff check .
+python -m ruff format --check .
+python scripts/check_hygiene.py
+```
+
+Tests collect only `tests/`. `test_gemini.py` is an existing manual live-API
+probe, not a unit test; it is intentionally excluded from discovery. The
+suite disables sockets and replaces optional model/API dependencies before
+importing the engine. Dense ranking uses known vectors; TF-IDF tests run the
+real implementation. Cache tests write only to pytest temporary directories.
+
+Install the configured local hooks from the activated environment:
+
+```powershell
+python -m pre_commit install --hook-type pre-commit --hook-type pre-push
+python -m pre_commit run --all-files
+python -m pre_commit run --all-files --hook-stage pre-push
+```
+
+Hooks use the active Python environment. Pre-commit checks lint, formatting,
+YAML syntax, and conflict markers; pre-push runs the entire offline suite.
+CI repeats these checks. Existing production Python files are temporarily
+excluded from formatting checks to avoid mixing a formatting rewrite into
+this harness change; lint still covers them. `app.py` permits E402 because
+it loads dotenv before importing the engine's configuration.
+
+The existing real-model and Streamlit health smoke checks are available via
+GitHub Actions **Run workflow** (`workflow_dispatch`). They require runtime
+dependencies and may download the embedding model. The health endpoint alone
+does not prove that user interaction or recommendation rendering works.
+Docker CI remains a separate existing workflow.
+
+See [HARNESS.md](HARNESS.md) for coverage, open defects, and validation limits.

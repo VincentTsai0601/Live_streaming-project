@@ -60,3 +60,6 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+.ruff_cache/
+.pre-commit-cache/

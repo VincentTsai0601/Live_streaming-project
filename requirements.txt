@@ -10,3 +10,4 @@ uvicorn[standard]>=0.30,<1.0
 # Note: `torch`, `torchvision`, and `torchaudio` are NOT listed here because
 # they require platform- and CUDA-specific wheels. See `README.md` ->
 # "Installing PyTorch (CUDA / CPU options)" for commands to install them
+python-dotenv>=1.0,<2.0

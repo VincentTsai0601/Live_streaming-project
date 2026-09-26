@@ -1,0 +1,19 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "--strict-markers --disable-socket --basetemp=.cache/pytest-harness"
+
+[tool.ruff]
+target-version = "py311"
+force-exclude = true
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.ruff.lint.per-file-ignores]
+# dotenv loads before configuration imports.
+"app.py" = ["E402"]
+
+[tool.ruff.format]
+# Preserve production files; formatting baseline covers new harness code.
+exclude = ["app.py", "streamer_recommender.py", "test_gemini.py"]
