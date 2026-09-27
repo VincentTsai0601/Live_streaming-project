@@ -135,6 +135,9 @@ python streamer_recommender.py
 
 This will prompt for a query and display ranked anchor recommendations in the terminal.
 
+## Deployment of Streamlit 
+-  https://livestreaming-project-npe9eo6l2jie8f2nl8mxja.streamlit.app/
+
 ## Data and Models
 
 - `anchors_100.csv` is the default anchor metadata source.
